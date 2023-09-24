@@ -95,8 +95,8 @@ const styles = css`
 		box-sizing: border-box;
 	}
 	html {
-		/* font-size: 62.5%;
-				font-family: 'Noto Sans KR', 'sans-serif'; */
+		font-size: 10px;
+		/* font-family: 'Noto Sans KR', 'sans-serif'; */
 		body {
 			margin: 0 auto;
 			width: 393px;
