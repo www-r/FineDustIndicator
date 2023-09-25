@@ -1,8 +1,11 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
+
 function GlobalStyle() {
 	return <Global styles={styles} />;
 }
+export default GlobalStyle;
+
 const styles = css`
 	html,
 	body,
@@ -96,13 +99,21 @@ const styles = css`
 		box-sizing: border-box;
 	}
 	html {
-		font-size: 10px;
-		/* font-family: 'Noto Sans KR', 'sans-serif'; */
-		body {
-			margin: 0 auto;
-			width: 393px;
-			height: 852px;
+		@font-face {
+			font-family: 'Pretendard-Regular';
+			src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
 		}
+		body {
+		}
+		font-family: 'Pretendard-Regular', 'Noto Sans KR', 'sans-serif';
+		line-height: 1.5;
+		margin: 0 auto;
+		width: 393px;
+		height: 852px;
+		font-family: 'Pretendard-Regular';
+		background-color: #e5e5e5;
 	}
 	ol,
 	ul {
@@ -139,5 +150,3 @@ const styles = css`
 		outline: none;
 	}
 `;
-
-export default GlobalStyle;

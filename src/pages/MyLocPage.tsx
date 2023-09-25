@@ -1,11 +1,22 @@
 import React from 'react';
 import Display from '../components/Display';
+import Card from '../components/Card';
 import Navbar from '../components/Navbar';
+import * as S from './styled';
+
 export default function MyLocPage() {
 	return (
-		<div>
-			<Display />
+		<S.Page>
+			<S.Display>
+				<ul>
+					<Card />
+					<Card />
+					<Card />
+					<Card />
+					<Card />
+				</ul>
+			</S.Display>
 			<Navbar />
-		</div>
+		</S.Page>
 	);
 }

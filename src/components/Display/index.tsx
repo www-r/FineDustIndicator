@@ -1,5 +1,6 @@
 import React from 'react';
+import * as S from './styled';
 
 export default function Display({ children }) {
-	return <div>{children}</div>;
+	return <S.Display>{children}</S.Display>;
 }

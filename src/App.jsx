@@ -1,11 +1,10 @@
-import GlobalStyle from './style/GlobalStyle';
-import Navbar from './components/Navbar';
-
+import GlobalStyle from './style/globalStyle';
+import MyLocPage from './pages/MyLocPage';
 function App() {
 	return (
 		<div>
 			<GlobalStyle />
-			<Navbar />
+			<MyLocPage />
 		</div>
 	);
 }
