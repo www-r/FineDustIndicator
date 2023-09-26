@@ -5,7 +5,3 @@ export const Page = styled.div`
 	height: 85.2rem;
 	position: relative;
 `;
-export const Display = styled.div`
-	overflow: auto;
-
-`;
