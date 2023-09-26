@@ -7,15 +7,11 @@ import * as S from './styled';
 export default function MyLocPage() {
 	return (
 		<S.Page>
-			<S.Display>
+			<Display>
 				<ul>
 					<Card />
-					<Card />
-					<Card />
-					<Card />
-					<Card />
 				</ul>
-			</S.Display>
+			</Display>
 			<Navbar />
 		</S.Page>
 	);
