@@ -11,8 +11,11 @@ export default function ListBox({ array }) {
 	};
 
 	return (
-		<>
-			<S.ListBoxBtn onClick={() => setIsOpen(!isOpen)}>{selectedItem}</S.ListBoxBtn>
+		<S.ListBoxWrapper>
+			<S.ListBoxBtn onClick={() => setIsOpen(!isOpen)}>
+				<S.ListBoxValue>{selectedItem}</S.ListBoxValue>
+				<S.ListBoxBtnArrow>{isOpen ? '▲' : '▼'}</S.ListBoxBtnArrow>
+			</S.ListBoxBtn>
 			{isOpen && (
 				<S.ListBox id={`${array}Select`}>
 					{array.map((item) => (
@@ -20,6 +23,6 @@ export default function ListBox({ array }) {
 					))}
 				</S.ListBox>
 			)}
-		</>
+		</S.ListBoxWrapper>
 	);
 }

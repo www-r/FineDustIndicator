@@ -8,4 +8,8 @@ export const Searchbar = styled.div`
 	background-color: ${commons.color.purple};
 	height: 5rem;
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 `;

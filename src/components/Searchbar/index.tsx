@@ -21,5 +21,10 @@ export default function Searchbar() {
 		'제주',
 		'세종',
 	];
-	return <S.Searchbar>{<ListBox array={sidosArr} />}</S.Searchbar>;
+	return (
+		<S.Searchbar>
+			<ListBox array={sidosArr} />
+			<ListBox array={[]} />
+		</S.Searchbar>
+	);
 }
