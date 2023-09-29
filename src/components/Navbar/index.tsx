@@ -15,7 +15,7 @@ export default function Navbar() {
 					<Link to="/allLocations">{IconMap}</Link>
 				</S.NavbarItem>
 				<S.NavbarItem>
-					<Link to="pinnedLocations">{IconBookmarkEmpty}</Link>
+					<Link to="/pinnedLocations">{IconBookmarkEmpty}</Link>
 				</S.NavbarItem>
 			</ul>
 		</S.Navbar>
