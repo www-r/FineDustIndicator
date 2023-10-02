@@ -6,6 +6,10 @@ import Navbar from '@/components/Navbar';
 import * as S from './styled';
 
 export default function MyLocPage() {
+	navigator.geolocation.getCurrentPosition((data: GeolocationPosition) => {
+		console.log(data);
+	});
+
 	return (
 		<S.Page>
 			<Searchbar />
