@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { commons } from '@/style/commons';
+import { commons } from '@/styles/commons';
 
 export const Searchbar = styled.div`
 	position: fixed;

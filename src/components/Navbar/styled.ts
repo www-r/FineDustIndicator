@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { commons } from '../../style/commons';
+import { commons } from '../../styles/commons';
+
 export const Navbar = styled.nav`
 	width: 100%;
 	height: fit-content;

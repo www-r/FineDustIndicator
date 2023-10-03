@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { commons } from '../../style/commons';
+import { commons } from '../../styles/commons';
 export const Card = styled.li`
 	box-shadow: 0 0 0 1px rgb(0 0 0 / 7%), 0 2px 4px rgb(0 0 0 / 5%), 0 12px 24px rgb(0 0 0 / 5%);
 	border: 1px solid transparent;
