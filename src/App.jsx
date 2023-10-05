@@ -1,5 +1,5 @@
-import GlobalStyle from './style/globalStyle';
-import MyLocPage from './pages/MyLocPage';
+import GlobalStyle from '@/styles/globalStyle';
+import MyLocPage from '@/pages/MyLocPage';
 function App() {
 	return (
 		<div>
