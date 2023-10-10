@@ -1,20 +1,44 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { createLogger } from 'redux-logger';
-import { dustApi } from './apis/dustApi';
-import { favoriteSlice } from './slices/favoriteSlice';
-import { locationSlice } from './slices/locationSlice';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const logger = createLogger();
-
-const rootReducer = combineReducers({
-  [dustApi.reducerPath]: dustApi.reducer,
-  [locationSlice.name]: locationSlice.reducer,
-  [favoriteSlice.name]: favoriteSlice.reducer
+const initialMyLocationState = { sidoName: '', stationName: '' };
+const initialFavLocationsState = []
+const myLocationSlice = createSlice({
+	name: 'myLocationSlice',
+	initialState: initialMyLocationState,
+	reducers: {
+		update(state, action) {
+			state.myLocation = action.myLocation;
+		},
+		reset(state) {
+			state.myLocation = { sidoName: '', stationName: '' };
+		}
+	}
 });
-
+const favLocationsSlice = createSlice({
+	name: 'favLocationsSlice',
+	initialState: initialFavLocationsState,
+	reducers: {
+		add(state, action) {
+			state.favLocations = [
+				...state.favLocations,
+				action.favLocation
+			];
+		},
+		remove(state, action) {
+			state.favLocations = state.favLocations.filter(
+				item => item !== action.favLocation
+			);
+		},
+		reset(state){
+			state.favLocations = []
+		}
+	}
+});
 const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([logger, dustApi.middleware]),
+	reducer: {
+		myLocationSlice,
+		favLocationsSlice,	}
 });
-
+export const myLocationActions = myLocationSlice.actions;
+export const favLocationsActions = favLocationsSlice.actions;
 export default store;
