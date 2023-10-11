@@ -20,8 +20,8 @@ import {favLocationsSlice} from './slices/favoriteSlice'
 const store = configureStore({
 	reducer: {
 		// myLocationSlice,
-		locationSlice,
-		favLocationsSlice
+		location:locationSlice.reducer,
+		favLocations: favLocationsSlice.reducer
 	}
 });
 // export const myLocationActions = myLocationSlice.actions;
