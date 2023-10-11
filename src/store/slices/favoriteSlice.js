@@ -56,4 +56,4 @@ export function useFavoriteSlice() {
   };
 }
 
-export default favoriteSlice.reducer;
+export default favLocationsSlice.reducer;
