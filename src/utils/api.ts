@@ -1,11 +1,12 @@
 import axios from 'axios';
 const { VITE_SERVICE_KEY, VITE_API_URL } = import.meta.env;
-const getParams = (searchDate, region) => {
+
+const getParams = (searchDate, stationName) => {
 	return {
 		serviceKey: VITE_SERVICE_KEY,
 		returnType: 'json',
 		searchDate: searchDate,
-		sidoName: region
+		sidoName: stationName
 		// ver: '1.0'
 	};
 };
@@ -14,12 +15,21 @@ export const axiosInstance = axios.create({
 	timeout: 1000,
 	params: { getParams }
 });
+const getDataTime = () => {
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = ('0' + (today.getMonth() + 1)).slice(-2);
+	const day = ('0' + today.getDate()).slice(-2);
+	const dataTime = year + '-' + month + '-' + day;
+	return dataTime;
+};
 
-export const getData = async (searchDate, region) => {
+export const getData = async sidoName => {
+	const searchDate = getDataTime();
 	const res = await axios.get(VITE_API_URL, {
-		params: { ...getParams(searchDate, region) }
+		params: { ...getParams(searchDate, sidoName) }
 	});
 	console.log('getData:', res.data.response.body.items);
 
-	return;
+	return res.data.response.body.items;
 };
