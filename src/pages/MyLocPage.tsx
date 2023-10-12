@@ -22,9 +22,9 @@ export default function MyLocPage() {
 		const myLocData = res.find(
 			({ stationName }) => stationName === myLocation.stationName
 		);
-		console.log('getMyLocationData:', myLocData);
-		setMyLocationData(myLocData);
+		// console.log('getMyLocationData:', myLocData);
 		dispatch(setMyLocation(myLocData));
+		setMyLocationData(myLocData);
 	};
 
 	useEffect(() => {
@@ -35,17 +35,15 @@ export default function MyLocPage() {
 		<S.Page>
 			<Searchbar />
 			<Display>
-				<ul>
-					{
-						<Card
-							sidoName={myLocationData?.sidoName}
-							stationName={myLocationData?.stationName}
-							dataTime={myLocationData?.dataTime}
-							pm10Grade={myLocationData?.pm10Grade}
-							pm10Value={myLocationData?.pm10Value}
-						/>
-					}
-				</ul>
+				{
+					<Card
+						sidoName={myLocationData?.sidoName}
+						stationName={myLocationData?.stationName}
+						dataTime={myLocationData?.dataTime}
+						pm10Grade={myLocationData?.pm10Grade}
+						pm10Value={myLocationData?.pm10Value}
+					/>
+				}
 			</Display>
 			<Navbar />
 		</S.Page>
