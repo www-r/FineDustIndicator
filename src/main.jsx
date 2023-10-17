@@ -12,12 +12,12 @@ const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <Root />,
-		errorElement: <ErrorPage />
+		// errorElement: <ErrorPage />
 	},
 	{
 		path: '/allLocations',
-		element: <AllLocsPage />
-	}
+		element: <AllLocsPage />,
+	},
 	// {
 	// 	path: '/pinnedLocations',
 	// 	element: <PinnedLocsPage />,
