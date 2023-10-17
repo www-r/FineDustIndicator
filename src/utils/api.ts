@@ -24,7 +24,7 @@ const getDataTime = () => {
 	return dataTime;
 };
 
-export const getData = async sidoName => {
+export const getData = async ({sidoName}) => {
 	const searchDate = getDataTime();
 	const res = await axios.get(VITE_API_URL, {
 		params: { ...getParams(searchDate, sidoName) }
