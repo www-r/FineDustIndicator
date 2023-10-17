@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './styled';
 import { LocationData } from '../../interface';
-x
+
 
 export default function Card({
 	sidoName,
