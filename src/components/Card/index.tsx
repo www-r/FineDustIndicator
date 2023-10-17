@@ -1,18 +1,16 @@
 import React from 'react';
 import * as S from './styled';
+import { LocationData } from '../../interface';
+x
 
-interface CardProps {
-
-		sidoName: string;
-		stationName: string;
-		dataTime: string;
-		pm10Grade: string;
-		pm10Value: string;
-
-}
-
-export default function Card({ sidoName,stationName,dataTime,pm10Grade,pm10Value}: CardProps) {
-	const getPm10Grade = pm10Grade => {
+export default function Card({
+	sidoName,
+	stationName,
+	dataTime,
+	pm10Grade,
+	pm10Value
+}: LocationData) {
+	const getPm10GradeString = pm10Grade => {
 		switch (pm10Grade) {
 			case '1':
 				return '좋음';
@@ -26,19 +24,19 @@ export default function Card({ sidoName,stationName,dataTime,pm10Grade,pm10Value
 				return '매우나쁨';
 		}
 	};
+
 	return (
 		<S.Card>
 			<S.SideContainer>
 				<S.Address>
-					<S.AddressRoad>{stationName}</S.AddressRoad>
 					<S.AddressCity>{sidoName}</S.AddressCity>
+					<S.AddressRoad>{stationName}</S.AddressRoad>
 				</S.Address>
-				<div>
-					<span></span>
-				</div>
 			</S.SideContainer>
-			<S.MainContainer>
-				<S.FineDustDensity>{getPm10Grade(pm10Grade)}</S.FineDustDensity>
+			<S.MainContainer className={`grade${pm10Grade}`}>
+				<S.FineDustDensity className={`grade${pm10Grade}`}>
+					{getPm10GradeString(pm10Grade)}
+				</S.FineDustDensity>
 				<S.FineDustRate>
 					미세먼지 수치: <span>{pm10Value}</span>
 				</S.FineDustRate>

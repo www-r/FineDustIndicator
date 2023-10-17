@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { MyLocation, AllLocation } from '../../interface';
 
 interface InitialState {
-	myLocation: myLocation;
-	allLocation: allLocation;
+	myLocation: MyLocation;
+	allLocation: AllLocation;
 }
 const initialState: InitialState = {
 	myLocation: { sidoName: '서울', stationName: '강남구' },
@@ -15,12 +15,12 @@ export const locationSlice = createSlice({
 	name: 'location',
 	initialState: initialState,
 	reducers: {
-		setMyLocation: (state, action) => {
+		setMyLocation: (state, action: PayloadAction<MyLocation>) => {
 			state.myLocation.sidoName = action.payload.sidoName;
 			state.myLocation.stationName = action.payload.stationName;
 		},
-		setAllLocation: (state, action) => {
-			state.allLocation.sidoName = action.payload;
+		setAllLocation: (state, action: PayloadAction<AllLocation>) => {
+			state.allLocation.sidoName = action.payload.sidoName;
 		},
 	},
 });
@@ -28,8 +28,8 @@ export const locationSlice = createSlice({
 export const { setMyLocation, setAllLocation } = locationSlice.actions;
 
 export function useLocationSlice() {
-	const allLocation = useSelector((state) => state.location.allLocation);
-	const myLocation = useSelector((state) => state.location.myLocation);
+	const allLocation: AllLocation = useSelector((state) => state.location.allLocation);
+	const myLocation: MyLocation = useSelector((state) => state.location.myLocation);
 	const dispatch = useDispatch();
 
 	return {
