@@ -6,6 +6,7 @@ export default function Searchbar() {
 	return (
 		<S.Searchbar>
 			<ListBox />
+			<ListBox />
 		</S.Searchbar>
 	);
 }
