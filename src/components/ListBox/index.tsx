@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import * as S from './styled';
+import { sidosArr } from '../../constants/sidosArr';
+import { useLocationSlice, setMyLocation, setAllLocation } from '../../store/slices/locationSlice';
 
-export default function ListBox({ array }) {
+export default function ListBox({array = sidosArr}) {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const [selectedItem, setSelectedItem] = useState<string>('');
-
-	const clickListItem = (value) => {
-		setSelectedItem(value);
-		setIsOpen(false);
+	const { myLocation, allLocation, dispatch } = useLocationSlice();
+	const clickListBtn = () => {
+		setIsOpen(!isOpen);
 	};
-
+	const clickListItem = (sido) => {
+		dispatch(setAllLocation(sido));
+		setIsOpen(!isOpen);
+	};
 	return (
 		<S.ListBoxWrapper>
-			<S.ListBoxBtn onClick={() => setIsOpen(!isOpen)}>
-				<S.ListBoxValue>{selectedItem}</S.ListBoxValue>
+			<S.ListBoxBtn onClick={clickListBtn}>
+				<S.ListBoxValue>{allLocation.sidoName}</S.ListBoxValue>
 				<S.ListBoxBtnArrow>{isOpen ? '▲' : '▼'}</S.ListBoxBtnArrow>
 			</S.ListBoxBtn>
 			{isOpen && (
-				<S.ListBox id={`${array}Select`}>
-					{array.map((item) => (
-						<S.ListItem onClick={() => clickListItem(item)}>{item}</S.ListItem>
+				<S.ListBox>
+					{array.map((sido) => (
+						<S.ListItem onClick={() => clickListItem(sido)}>{sido}</S.ListItem>
 					))}
 				</S.ListBox>
 			)}
