@@ -4,11 +4,11 @@ import Searchbar from '../components/Searchbar';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
 import * as S from './styled';
-import { useLocationSlice} from '../store/slices/locationSlice';
-import { getData } from '../utils/api';
+import { useLocationSlice } from '../store/slices/locationSlice';
+import { getStationData } from '../utils/api';
 import { LocationData } from '../interface';
 export default function MyLocPage() {
-	const { myLocation} = useLocationSlice();
+	const { myLocation } = useLocationSlice();
 	const [myLocationData, setMyLocationData] = useState<LocationData>({
 		sidoName: myLocation.sidoName,
 		stationName: myLocation.stationName,
@@ -17,31 +17,28 @@ export default function MyLocPage() {
 		pm10Value: '',
 	});
 
-	const getMyLocationData = async (myLocation) => {
-		const res = await getData(myLocation.sidoName); //배열
-		console.log('myLocation:', myLocation);
-		console.log('res:', res);
-		const myLocData = res.find((item) => {
-			console.log('find:', item);
-			return item.stationName === myLocation.stationName;
+	const getMyLocationData = async (stationName) => {
+		const res = await getStationData(stationName);
+		// console.log('res:', res);
+		setMyLocationData({
+			dataTime: res.dataTime,
+			pm10Grade: res.pm10Grade,
+			pm10Value: res.pm10Value,
 		});
-		console.log('myLocData:', myLocData);
-		// dispatch(setMyLocation(myLocData));
-		setMyLocationData(myLocData);
 	};
 
 	useEffect(() => {
-		getMyLocationData(myLocation);
+		getMyLocationData(myLocation.stationName);
 	}, []);
 
 	return (
 		<S.Page>
-			<Searchbar />
+			<Searchbar show={false} />
 			<Display>
 				{
 					<Card
-						sidoName={myLocationData.sidoName}
-						stationName={myLocationData.stationName}
+						sidoName={myLocation.sidoName}
+						stationName={myLocation.stationName}
 						dataTime={myLocationData.dataTime}
 						pm10Grade={myLocationData.pm10Grade}
 						pm10Value={myLocationData.pm10Value}
