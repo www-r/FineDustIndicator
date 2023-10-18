@@ -1,20 +1,33 @@
 import axios from 'axios';
 const { VITE_SERVICE_KEY, VITE_API_URL } = import.meta.env;
 
-const getParams = (searchDate, stationName) => {
+const getSidoParams = (searchDate, sidoName) => {
 	return {
 		serviceKey: VITE_SERVICE_KEY,
 		returnType: 'json',
-		searchDate: searchDate,
-		sidoName: stationName
+		searchDate,
+		sidoName,
 		// ver: '1.0'
 	};
 };
-export const axiosInstance = axios.create({
-	baseURL: VITE_API_URL,
-	timeout: 1000,
-	params: { getParams }
-});
+const getStationParams = (dataTerm, stationName) => {
+	return {
+		serviceKey: VITE_SERVICE_KEY,
+		returnType: 'json',
+		dataTerm,
+		stationName,
+	};
+};
+// export const sidoInstance = axios.create({
+// 	baseURL: VITE_API_URL,
+// 	timeout: 1000,
+// 	params: { getSidoParams },
+// });
+// export const stationNameInstance = axios.create({
+// 	baseURL: VITE_API_URL,
+// 	timeout: 1000,
+// 	params: { getStationParams },
+// });
 const getDataTime = () => {
 	const today = new Date();
 	const year = today.getFullYear();
@@ -24,12 +37,16 @@ const getDataTime = () => {
 	return dataTime;
 };
 
-export const getData = async ({sidoName}) => {
+export const getSidoData = async (sidoName) => {
 	const searchDate = getDataTime();
-	const res = await axios.get(VITE_API_URL, {
-		params: { ...getParams(searchDate, sidoName) }
+	const res = await axios.get(VITE_API_URL + '/getCtprvnRltmMesureDnsty', {
+		params: { ...getSidoParams(searchDate, sidoName) },
 	});
-	console.log('getData:', res.data.response.body.items);
-
 	return res.data.response.body.items;
+};
+export const getStationData = async (stationName) => {
+	const res = await axios.get(VITE_API_URL + '/getMsrstnAcctoRltmMesureDnsty', {
+		params: { ...getStationParams('DAILY', stationName) },
+	});
+	return res.data.response.body.items[0];
 };
