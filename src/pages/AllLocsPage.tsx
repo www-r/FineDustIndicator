@@ -4,25 +4,32 @@ import Display from '../components/Display';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
 import * as S from './styled';
-import { getData } from '../utils/api';
+import { getSidoData } from '../utils/api';
 import { useLocationSlice, setAllLocation } from '../store/slices/locationSlice';
 import { LocationData } from '../interface';
 
 export default function AllLocsPage() {
+	const [dataArr, setDataArr] = useState<LocationData[]>([]);
 	const { allLocation } = useLocationSlice();
-	const [allLocationsDataArr, setAllLocationsDataArr] = useState<LocationData[]>([]);
-	const getAllLocationsDataArr = async () => {
-		const res = await getData(allLocation);
-		setAllLocationsDataArr(res);
+	const getAllLocationDataArr = async () => {
+		const res = await getSidoData(allLocation.sidoName);
+		setDataArr(res);
+	};
+	const filterStationArr = () => {
+		const filteredArr = dataArr.filter((item) => item.stationName === allLocation.stationName);
+		setDataArr(filteredArr);
 	};
 	useEffect(() => {
-		getAllLocationsDataArr();
-	}, []);
+		getAllLocationDataArr();
+	}, [allLocation.sidoName]);
+	useEffect(() => {
+		filterStationArr();
+	}, [allLocation.stationName]);
 	return (
 		<S.Page>
-			<Searchbar />
+			<Searchbar show />
 			<Display>
-				{allLocationsDataArr.map((locationData) =>
+				{dataArr.map((locationData) =>
 					locationData.pm10Grade && locationData.pm10Value ? (
 						<Card
 							key={locationData?.stationName}
