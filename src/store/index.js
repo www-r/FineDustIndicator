@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { locationSlice } from './slices/locationSlice';
-import {favLocationsSlice} from './slices/favoriteSlice'
+import {pinnedSlice} from './slices/pinnedSlice'
 
 // const initialMyLocationState = { sidoName: '', stationName: '' };
 // const initialFavLocationsState = [];
@@ -21,7 +21,7 @@ const store = configureStore({
 	reducer: {
 		// myLocationSlice,
 		location:locationSlice.reducer,
-		favLocations: favLocationsSlice.reducer
+		pinned: pinnedSlice.reducer
 	}
 });
 // export const myLocationActions = myLocationSlice.actions;
