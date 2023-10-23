@@ -6,24 +6,28 @@ import Navbar from '../components/Navbar';
 import * as S from './styled';
 import { useLocationSlice } from '../store/slices/locationSlice';
 import { getStationData } from '../utils/api';
-import { LocationData } from '../interface';
+import { MyLocation } from '../type';
+
 export default function MyLocPage() {
 	const { myLocation } = useLocationSlice();
-	const [myLocationData, setMyLocationData] = useState<LocationData>({
+	const [myLocationData, setMyLocationData] = useState<MyLocation>({
 		sidoName: myLocation.sidoName,
 		stationName: myLocation.stationName,
 		dataTime: '',
 		pm10Grade: '',
 		pm10Value: '',
+		isPinned: false
 	});
 
-	const getMyLocationData = async (stationName) => {
+	const getMyLocationData = async stationName => {
 		const res = await getStationData(stationName);
-		// console.log('res:', res);
 		setMyLocationData({
+			sidoName: res.sidoName,
+			stationName: res.stationName,
 			dataTime: res.dataTime,
 			pm10Grade: res.pm10Grade,
 			pm10Value: res.pm10Value,
+			isPinned: myLocation.isPinned
 		});
 	};
 
@@ -42,6 +46,7 @@ export default function MyLocPage() {
 						dataTime={myLocationData.dataTime}
 						pm10Grade={myLocationData.pm10Grade}
 						pm10Value={myLocationData.pm10Value}
+						isPinned={myLocationData.isPinned}
 					/>
 				}
 			</Display>
