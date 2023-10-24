@@ -16,6 +16,7 @@ export default function PinnedLocsPage() {
 			<Display>
 				{pinnedLocations.map(element => (
 					<Card
+						key={self.crypto.randomUUID()}
 						sidoName={element.sidoName}
 						stationName={element.stationName}
 						dataTime={element.dataTime}

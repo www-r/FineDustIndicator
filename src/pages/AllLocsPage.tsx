@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import Searchbar from '../components/Searchbar';
 import Display from '../components/Display';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
 import * as S from './styled';
 import { getSidoData } from '../utils/api';
-import {
-	useLocationSlice,
-} from '../store/slices/locationSlice';
+import { useLocationSlice } from '../store/slices/locationSlice';
 import { LocationData } from '../type';
 
 export default function AllLocsPage() {
@@ -27,9 +25,9 @@ export default function AllLocsPage() {
 		<S.Page>
 			<Searchbar show />
 			<Display>
-				{dataArr.map(locationData => (
+				{dataArr.map((locationData) => (
 					<Card
-						key={locationData.stationName}
+						key={self.crypto.randomUUID()}
 						sidoName={locationData.sidoName}
 						stationName={locationData.stationName}
 						dataTime={locationData.dataTime}
