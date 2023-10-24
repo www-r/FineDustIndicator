@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { locationSlice } from './slices/locationSlice';
-import {pinnedSlice} from './slices/pinnedSlice'
-
+import { pinnedSlice } from './slices/pinnedSlice';
+import { searchbarSlice } from './slices/searchbarSlice';
 // const initialMyLocationState = { sidoName: '', stationName: '' };
 // const initialFavLocationsState = [];
 // const myLocationSlice = createSlice({
@@ -20,8 +20,9 @@ import {pinnedSlice} from './slices/pinnedSlice'
 const store = configureStore({
 	reducer: {
 		// myLocationSlice,
-		location:locationSlice.reducer,
-		pinned: pinnedSlice.reducer
+		location: locationSlice.reducer,
+		pinned: pinnedSlice.reducer,
+		searchbar: searchbarSlice.reducer
 	}
 });
 // export const myLocationActions = myLocationSlice.actions;
