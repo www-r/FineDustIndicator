@@ -6,23 +6,14 @@ import { setStationArr } from '../../store/slices/searchbarSlice';
 import { getSidoData } from '../../utils/api';
 
 export default function Searchbar({ show }) {
-	const { sidoName, sidoArr, stationName, stationArr, dispatch } =
-		useSearchbarSlice();
-	const getStationArr = async (sidoName: string) => {
-		const res = await getSidoData(sidoName);
-		const stationArr = res.map(item => item.stationName);
-		dispatch(setStationArr(stationArr));
-	};
-	useEffect(() => {
-		getStationArr(sidoName);
-	}, [sidoName]);
-
+	const { sidoName, sidoArr, stationName, stationArr, dispatch } = useSearchbarSlice();
+	
 	return (
 		<S.Searchbar>
 			{show ? (
 				<>
-					<ListBox type='sido' />
-					<ListBox type='station' />
+					<ListBox arr={sidoArr} type="sido" />
+					<ListBox arr={stationArr} type="station" />
 				</>
 			) : (
 				<></>

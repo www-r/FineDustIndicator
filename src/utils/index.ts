@@ -4,3 +4,4 @@ export const getDate = () => {
   console.log('today', today)
 	return today;
 };
+
